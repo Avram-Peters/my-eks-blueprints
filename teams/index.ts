@@ -1,3 +1,3 @@
-import { TeamPlatform } from './platform-team'
-import { TeamApplication } from './application-team'
+export { TeamPlatform } from './platform-team'
+export { TeamApplication } from './application-team'
 
