@@ -14,29 +14,28 @@ export default class PipelineConstruct extends Construct {
 
                    const blueprint = blueprints.EksBlueprint.builder()
                        .account(account)
-                           .region(region)
-                               .addOns()
-                                   .teams(
-				   	new TeamPlatform(account), new TeamApplication('burnham', account));
-				   );
-                                     
-                                         blueprints.CodePipelineStack.builder()
-                                               .name("eks-blueprints-workshop-pipeline")
-                                                     .owner("Avram-Peters")
-                                                           .repository({
-                                                                     repoUrl: 'my-eks-blueprints',
-                                                                               credentialsSecretName: 'github-token',
-                                                                                         targetRevision: 'master'
+                       .region(region)
+                       .addOns()
+                       .teams(new TeamPlatform(account), new TeamApplication('burnham', account));
+				   
+                                   
+                  blueprints.CodePipelineStack.builder()
+                       .name("eks-blueprints-workshop-pipeline")
+                       .owner("Avram-Peters")
+                       .repository({
+                              repoUrl: 'my-eks-blueprints',
+                              credentialsSecretName: 'github-token',
+                              targetRevision: 'master'
                                })
-			       .wave({
-				       id: "envs",
-				       stages: [
-					       { id: "dev", stackBuilder: blueprint.clone('us-west-2')},
-					       { id: "test", stackBuilder: blueprint.clone('us-east-2')},
-					       { id: "prod", stackBuilder: blueprint.clone('us-east-1')}
-					       ]
-			       })
-                               .build(scope, id+'-stack', props);
+		       .wave({
+			       id: "envs",
+			       stages: [
+				       { id: "dev", stackBuilder: blueprint.clone('us-west-2')},
+				       { id: "test", stackBuilder: blueprint.clone('us-east-2')},
+				       { id: "prod", stackBuilder: blueprint.clone('us-east-1')}
+				       ]
+		       })
+                       .build(scope, id+'-stack', props);
                                                                                                        }
                                                                                                        }
                                                                                                        
