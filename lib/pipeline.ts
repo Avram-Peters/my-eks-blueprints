@@ -36,6 +36,6 @@ export default class PipelineConstruct extends Construct {
 				       ]
 		       })
                        .build(scope, id+'-stack', props);
-                                                                                                       }
-                                                                                                       }
-                                                                                                       
+         }
+}
+                                                                                                 
